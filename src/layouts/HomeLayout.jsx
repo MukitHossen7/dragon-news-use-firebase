@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import LatestNews from "../components/LatestNews";
 
 const HomeLayout = () => {
   return (
@@ -6,6 +7,9 @@ const HomeLayout = () => {
       <header>
         <Header></Header>
       </header>
+      <div>
+        <LatestNews></LatestNews>
+      </div>
     </div>
   );
 };
