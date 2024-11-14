@@ -51,6 +51,16 @@ const RegisterPage = () => {
               required
             />
           </div>
+          <div className="form-control">
+            <label className="cursor-pointer justify-start gap-4 label">
+              <input
+                type="checkbox"
+                defaultChecked
+                className="checkbox checkbox-accent"
+              />
+              <span className="label-text">Accept Terms & Conditions</span>
+            </label>
+          </div>
           <div className="form-control rounded-none mt-6 pb-5">
             <button className="btn bg-[#403F3F] hover:bg-[#403F3F] text-white">
               Register
