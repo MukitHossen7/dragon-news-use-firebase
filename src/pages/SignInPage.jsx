@@ -1,6 +1,23 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const SignInPage = () => {
+  const { signUser } = useContext(AuthContext);
+  const handleLoginFrom = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log({ email, password });
+    signUser(email, password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log("Error: " + error);
+      });
+  };
   return (
     <div className="flex flex-col justify-center h-screen items-center">
       <div className="card bg-base-100 w-full max-w-lg shrink-0">
@@ -8,13 +25,14 @@ const SignInPage = () => {
           Login your account
         </h3>
 
-        <form className="card-body">
+        <form className="card-body" onSubmit={handleLoginFrom}>
           <div className="form-control">
             <label className="label">
               <span className="label-text font-semibold">Email address</span>
             </label>
             <input
               type="email"
+              name="email"
               placeholder="Enter your email address"
               className="input input-bordered"
               required
@@ -26,6 +44,7 @@ const SignInPage = () => {
             </label>
             <input
               type="password"
+              name="password"
               placeholder="Enter your password"
               className="input input-bordered"
               required
