@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const RegisterPage = () => {
   return (
     <div className="flex flex-col justify-center h-screen items-center">
@@ -61,12 +63,18 @@ const RegisterPage = () => {
               <span className="label-text">Accept Terms & Conditions</span>
             </label>
           </div>
-          <div className="form-control rounded-none mt-6 pb-5">
+          <div className="form-control rounded-none mt-6 ">
             <button className="btn bg-[#403F3F] hover:bg-[#403F3F] text-white">
               Register
             </button>
           </div>
         </form>
+        <p className="text-sm text-center font-semibold pb-8">
+          Already Have An Account?{" "}
+          <span className="text-red-500 underline">
+            <Link to="/auth/login">Login</Link>
+          </span>
+        </p>
       </div>
     </div>
   );
