@@ -12,11 +12,11 @@ const router = createBrowserRouter([
         element: <Navigate to="/category/01"></Navigate>,
       },
       {
-        path: "/category/:id",
+        path: "/category/:categoryId",
         element: <CategoryNews></CategoryNews>,
         loader: ({ params }) =>
           fetch(
-            `https://openapi.programming-hero.com/api/news/category/${params.id}`
+            `https://openapi.programming-hero.com/api/news/category/${params.categoryId}`
           ),
       },
     ],
