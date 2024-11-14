@@ -17,7 +17,7 @@ const Category = () => {
         <div key={category.category_id} className="my-4 flex">
           <NavLink
             to={`/category/${category.category_id}`}
-            className=" py-4 px-3 w-full text-center rounded-xl"
+            className=" py-4 px-3 w-full text-center rounded-xl border"
           >
             {category.category_name}
           </NavLink>

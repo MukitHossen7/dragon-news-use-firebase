@@ -4,6 +4,7 @@ import LatestNews from "../components/LatestNews";
 import Category from "../components/LayoutComponents/Category";
 
 import Navbar from "../components/Navbar";
+import LoginWith from "../components/LayoutComponents/LoginWith";
 
 const HomeLayout = () => {
   return (
@@ -15,14 +16,16 @@ const HomeLayout = () => {
       <nav>
         <Navbar></Navbar>
       </nav>
-      <main className="grid md:grid-cols-12 mt-20 gap-6">
+      <main className="grid md:grid-cols-12 mt-20 gap-8">
         <div className="col-span-3">
           <Category></Category>
         </div>
         <div className="col-span-6">
           <Outlet></Outlet>
         </div>
-        <div className="col-span-3">Right side bar</div>
+        <div className="col-span-3">
+          <LoginWith></LoginWith>
+        </div>
       </main>
     </div>
   );
