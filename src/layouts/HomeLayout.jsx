@@ -1,5 +1,8 @@
+import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import LatestNews from "../components/LatestNews";
+import Category from "../components/LayoutComponents/Category";
+
 import Navbar from "../components/Navbar";
 
 const HomeLayout = () => {
@@ -12,9 +15,13 @@ const HomeLayout = () => {
       <nav>
         <Navbar></Navbar>
       </nav>
-      <main className="grid md:grid-cols-12 mt-20">
-        <div className="col-span-3">Left side bar</div>
-        <div className="col-span-6"> Middle area</div>
+      <main className="grid md:grid-cols-12 mt-20 gap-6">
+        <div className="col-span-3">
+          <Category></Category>
+        </div>
+        <div className="col-span-6">
+          <Outlet></Outlet>
+        </div>
         <div className="col-span-3">Right side bar</div>
       </main>
     </div>
