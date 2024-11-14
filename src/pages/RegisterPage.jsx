@@ -1,6 +1,27 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const RegisterPage = () => {
+  const { createUser } = useContext(AuthContext);
+  const handleRegisterForm = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const name = form.get("name");
+    const photo = form.get("photo");
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log({ name, photo, email, password });
+
+    createUser(email, password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+  };
+
   return (
     <div className="flex flex-col justify-center h-screen items-center">
       <div className="card bg-base-100 w-full max-w-lg shrink-0">
@@ -8,13 +29,14 @@ const RegisterPage = () => {
           Register your account
         </h3>
 
-        <form className="card-body">
+        <form className="card-body" onSubmit={handleRegisterForm}>
           <div className="form-control">
             <label className="label">
               <span className="label-text font-semibold">Your Name</span>
             </label>
             <input
               type="text"
+              name="name"
               placeholder="Enter your name"
               className="input input-bordered"
               required
@@ -26,6 +48,7 @@ const RegisterPage = () => {
             </label>
             <input
               type="text"
+              name="photo"
               placeholder="Enter photo URL"
               className="input input-bordered"
               required
@@ -37,6 +60,7 @@ const RegisterPage = () => {
             </label>
             <input
               type="email"
+              name="email"
               placeholder="Enter your email address"
               className="input input-bordered"
               required
@@ -48,6 +72,7 @@ const RegisterPage = () => {
             </label>
             <input
               type="password"
+              name="password"
               placeholder="Enter your password"
               className="input input-bordered"
               required

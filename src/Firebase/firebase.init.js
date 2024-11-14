@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-
+import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyA9i4doRyA3XbTZBsb-BSxadYMsZdUrNTI",
   authDomain: "dragon-news-3b16c.firebaseapp.com",
@@ -10,4 +10,5 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export default app;
+const auth = getAuth(app);
+export default auth;
