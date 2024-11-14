@@ -1,13 +1,19 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import { CiShare2 } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { IoMdCopy } from "react-icons/io";
 import { MdVisibility } from "react-icons/md";
+
 const NewsCard = ({ newsItem }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
   const { title, author, rating, total_view, thumbnail_url, details } =
     newsItem;
 
-  console.log(newsItem);
+  const handleReadMore = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <div className="card card-compact w-full bg-base-100  mb-7 border border-gray-300 rounded-lg">
       <div className="flex items-center justify-between space-x-2 rounded-md  bg-gray-100 py-4 px-4 mb-4">
@@ -39,13 +45,27 @@ const NewsCard = ({ newsItem }) => {
           />
         </figure>
         <div className="">
-          <p className="text-sm text-gray-500">{details.slice(0, 200)}...</p>
+          <p className="text-sm text-gray-500">
+            {isExpanded ? details : details.slice(0, 200)}...
+          </p>
 
-          <button className="text-red-400 font-semibold mt-2">Read More</button>
+          <button
+            onClick={handleReadMore}
+            className="text-red-400 font-semibold mt-2 text-sm"
+          >
+            Read More
+          </button>
           <div className="divider"></div>
           <div className="flex items-center justify-between pb-4">
             <div className="flex items-center space-x-1">
-              <FaStar className="text-yellow-400" />
+              {[...Array(5)].map((_, index) => (
+                <FaStar
+                  key={index}
+                  className={`${
+                    index < rating.number ? "text-yellow-400" : "text-gray-300"
+                  }`}
+                />
+              ))}
               <span>
                 {rating.number} ({rating.badge})
               </span>
