@@ -16,8 +16,8 @@ const Navbar = () => {
       <div className="font-bold">{user?.email}</div>
       <div className="space-x-4">
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/career">Career</NavLink>
+        <NavLink to="/auth/about">About</NavLink>
+        <NavLink to="/auth/career">Career</NavLink>
       </div>
       <div className="flex items-center gap-3">
         {user?.email ? (

@@ -6,6 +6,7 @@ import SignInPage from "../pages/SignInPage";
 import RegisterPage from "../pages/RegisterPage";
 import NewsDetails from "../pages/NewsDetails";
 import PrivateRoutes from "./PrivateRoutes";
+import About from "../pages/About";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,14 @@ const router = createBrowserRouter([
         path: "/auth/register",
         element: <RegisterPage></RegisterPage>,
       },
+      {
+        path: "/auth/about",
+        element: <About></About>,
+      },
+      {
+        path: "/auth/career",
+        element: <About></About>,
+      },
     ],
   },
   {
@@ -51,10 +60,7 @@ const router = createBrowserRouter([
     loader: ({ params }) =>
       fetch(`https://openapi.programming-hero.com/api/news/${params.id}`),
   },
-  {
-    path: "/login",
-    element: <h1>This is Login page</h1>,
-  },
+
   {
     path: "*",
     element: <h1>Page Not Found</h1>,
