@@ -1,9 +1,11 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const SignInPage = () => {
   const { signUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleLoginFrom = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -13,8 +15,14 @@ const SignInPage = () => {
     signUser(email, password)
       .then((result) => {
         console.log(result);
+        e.target.reset();
+        toast.success("Login successful");
+        navigate("/category/01");
       })
       .catch((error) => {
+        toast.error(
+          "Sorry, the email or password you entered is incorrect. Please try again."
+        );
         console.log("Error: " + error);
       });
   };
