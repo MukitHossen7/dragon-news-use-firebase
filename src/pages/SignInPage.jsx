@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
 
 const SignInPage = () => {
   const { signUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
   const handleLoginFrom = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -17,7 +19,7 @@ const SignInPage = () => {
         console.log(result);
         e.target.reset();
         toast.success("Login successful");
-        navigate("/category/01");
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         toast.error(

@@ -2,11 +2,9 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
-import { signOut } from "firebase/auth";
-import auth from "../Firebase/firebase.init";
 
 const RegisterPage = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleRegisterForm = (e) => {
     e.preventDefault();
@@ -22,8 +20,15 @@ const RegisterPage = () => {
         console.log(result);
         e.target.reset();
         toast.success("Registration successful");
-        signOut(auth).then(() => {});
-        navigate("/auth/login");
+        updateUserProfile({ displayName: name, photoURL: photo })
+          .then(() => {
+            console.log("User profile updated");
+
+            navigate("/");
+          })
+          .catch((errors) => {
+            console.log("Error", errors);
+          });
       })
       .catch((error) => {
         console.log("Error", error);
