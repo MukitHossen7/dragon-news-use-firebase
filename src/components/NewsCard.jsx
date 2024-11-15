@@ -4,10 +4,11 @@ import { CiShare2 } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { IoMdCopy } from "react-icons/io";
 import { MdVisibility } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const NewsCard = ({ newsItem }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { title, author, rating, total_view, thumbnail_url, details } =
+  const { title, author, rating, total_view, thumbnail_url, details, _id } =
     newsItem;
 
   const handleReadMore = () => {
@@ -37,13 +38,15 @@ const NewsCard = ({ newsItem }) => {
       </div>
       <div className="px-4 space-y-4">
         <h2 className="card-title">{title}</h2>
-        <figure className="">
-          <img
-            src={thumbnail_url}
-            alt={title}
-            className="w-full h-96 object-cover rounded-xl"
-          />
-        </figure>
+        <Link to={`/news/${_id}`}>
+          <figure className="">
+            <img
+              src={thumbnail_url}
+              alt={title}
+              className="w-full h-96 object-cover rounded-xl"
+            />
+          </figure>
+        </Link>
         <div className="">
           <p className="text-sm text-gray-500">
             {isExpanded ? details : details.slice(0, 200)}...
